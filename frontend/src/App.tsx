@@ -8,6 +8,7 @@ import * as NotesApi from "./network/notes_api";
 import AddNoteDialog from "./components/AddEditNoteDialog";
 import { FaPlus } from "react-icons/fa";
 import AddEditNoteDialog from "./components/AddEditNoteDialog";
+import SignUpModal from "./components/SignUpModal";
 
 function App() {
 	const [notes, setNotes] = useState<NoteModel[]>([]);
@@ -46,19 +47,19 @@ function App() {
 		}
 	}
 
-	const notesGrid = 
-	<Row xs={1} md={2} xl={3} className={`g-4 ${styles.notesGrid}`}>
-		{notes.map((note) => (
-			<Col key={note._id}>
-				<Note
-					note={note}
-					className={styles.note}
-					onNoteClicked={setNoteToEdit}
-					onDeleteNoteClicked={deleteNote}
-				/>
-			</Col>
-		))}
-	</Row>
+	const notesGrid =
+		<Row xs={1} md={2} xl={3} className={`g-4 ${styles.notesGrid}`}>
+			{notes.map((note) => (
+				<Col key={note._id}>
+					<Note
+						note={note}
+						className={styles.note}
+						onNoteClicked={setNoteToEdit}
+						onDeleteNoteClicked={deleteNote}
+					/>
+				</Col>
+			))}
+		</Row>
 
 	return (
 		<Container className={styles.notesPage}>
@@ -71,14 +72,14 @@ function App() {
 			</Button>
 			{notesLoading && <Spinner animation='border' variant='primary' />}
 			{showNotesLoadingError && <p>Something went wrong. Please refresh the page.</p>}
-			{!notesLoading && !showNotesLoadingError && 
-			<>
-			{ notes.length > 0
-				? notesGrid
-				: <p>You don't have any notes yet</p>
+			{!notesLoading && !showNotesLoadingError &&
+				<>
+					{notes.length > 0
+						? notesGrid
+						: <p>You don't have any notes yet</p>
 
-			}
-			</>
+					}
+				</>
 			}
 			{showAddNoteDialog && (
 				<AddNoteDialog
@@ -105,6 +106,12 @@ function App() {
 					}}
 				/>
 			)}
+			{true &&
+				<SignUpModal
+					onDismiss={() => { }}
+					onSignUpSuccessful={() => { }} 
+				/>
+			}
 		</Container>
 	);
 }

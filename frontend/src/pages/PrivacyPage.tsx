@@ -1,7 +1,7 @@
 const PrivacyPage = () => {
     return ( 
         <div>
-            <p>We care about your privacy. Promise!</p>
+            <p>We care about your privacy!</p>
         </div>
      );
 }
